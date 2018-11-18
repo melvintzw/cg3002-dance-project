@@ -1,28 +1,69 @@
-RPi setup:
-- `sudo raspi-config` in terminal
-enable uart
-disable serial login
-enable uart hardware
+******
+README
+******
 
+contains some important info for the setting up the project.
 
-Running python3.6 programs:
-- install python 3.6 (follow instructions online)
+*****************
+PROJECT STRUCTURE
+*****************
+General:
+--------
+'Arduino' - contains source files for the Arduino
+'Evaluation' - contains source files and log files for the evaluation server
+'Misc' - contains miscellaneous helper scripts
+Pi/Trained Models/Pi - contains trained ML models
+Pi/Data - contains sensor data we collected doing particular dance moves
 
-- pip3 install <all dependencies>
-(includes pyserial, pycrypto, and ML libraries)
-(sudo apt-get install libatlas-base-dev)
+Noteworthy File Paths:
+----------------------
+Working code run on the Arduino Mega:
+Arduino/SensorsAndSerial/SensorsAndSerial.ino
+*all hardware must be properly setup before running
 
-- to run python3 scripts, use `python3 <name>.py`
+Working code run on the Raspberry Pi 3 during evaluation:
+Pi/main_eval.py
+*all hardware must be properly setup before running
+*files for ML models must be on same directory as this file
 
+Python script run on the Raspberry Pi 3 during data collection for the training phase:
+Pi/Data/collect.py
+*all hardware must be properly setup before running
+*expects path of csv file e.g. 'chicken.csv' - without brackets - as an argument.
 
-wireless RPi setup:
-- connect pi to hotspot for the first time (requires monitor)
+Machine Learning Training scripts for SVM, RandomForest and MLP models:
+Pi/Training/Avas_ML
 
-- subsequently, the pi will automatically connect to hotspot upon boot
+Machine Learning Training scripts for RNN model:
+Pi/Training/RNN
 
-- find IP address of pi by looking at connected devices on phone's hotspot GUI
+Data Visualisation Scripts:
+Pi/visualisation_v2.py - provide path to directory containing csv files as argument
+Pi/visualisation.py - provide path to csv file as argument 
 
-- ssh or vnc to pi using laptop using the pi's IP address
+TCP/Wifi Comms Script to connect the Pi to the Evaluation Server:
+wificomms.py - imported as a module in main_eval.py
+
+*************************
+SETTING UP RASPBERRY PI 3
+*************************
+
+RPi serial comms software setup:
+`sudo raspi-config` in pi terminal
+-> enable uart
+-> disable serial login
+-> enable uart hardware
+
+Raspberry Pi Raspbian Stretch OS does not come with Python 3 installed.
+Python3 is required for the ML scripts to work.
+
+Install python 3.6 
+-> follow instructions at https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37f
+-> sudo apt-get install libatlas-base-dev)
+-> to run python3 scripts, use the command `python3 <name>.py`
+
+Remember to install all dependencies onto Pi using:
+sudo pip3 install <module> -i "https://www.piwheels.org/simple"
 
 
 
