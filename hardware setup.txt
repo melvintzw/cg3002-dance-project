@@ -1,3 +1,0 @@
-left hand - sensor 2
-right hand - sensor 3
-
