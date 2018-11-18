@@ -25,6 +25,7 @@ Working code run on the Raspberry Pi 3 during evaluation:
 Pi/main_eval.py
 *all hardware must be properly setup before running
 *files for ML models must be on same directory as this file
+*wificomms.py must be on same directory as this file
 
 Python script run on the Raspberry Pi 3 during data collection for the training phase:
 Pi/Data/collect.py
